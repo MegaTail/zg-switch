@@ -100,42 +100,31 @@ Baseline: **39.5%**.
 
 ## 🚀 Build and install
 
-1. Download this repository.
-2. Place the "riderszg" in the "switch" folder.
-3. Launch it from the Homebrew Menu.
+The repository contains the small files of the "homebrew". The **4 large files** (about 3.5 GB) are published in the [Releases page](https://github.com/MegaTail/zg-switch/releases/latest) because they exceed GitHub's 100 MB per-file limit.
+
+1. Download this repository (**Code → Download ZIP**) and extract it.
+2. Download the large files from the [latest release](https://github.com/MegaTail/zg-switch/releases/latest):
+   - `riderszg.nro`
+   - `Image1.cvm`, `Image2.cvm`, `Image3.cvm`
+3. Put the files in this structure:
+
+```
+riderszg/
+├── riderszg.nro            ← from the release
+├── game/
+│   └── files/
+│       ├── Image1.cvm      ← from the release
+│       ├── Image2.cvm      ← from the release
+│       └── Image3.cvm      ← from the release
+└── ... (all other files from this repository)
+```
+
+4. Copy the whole `riderszg` folder to the `switch` folder on your SD card.
+5. Launch it from the Homebrew Menu holding the R button on the console.
+
 or
-use Sphaira and create a Forwarder to Open in the Main menu.
 
-
-## ⚖️ Legal
-
-- This repository contains **no code, assets, or data from Sega**, no game image, and no Switch keys or firmware.
-- Fan project, **not affiliated with or endorsed by Sega or Nintendo**. *Sonic Riders: Zero Gravity* is a trademark of its owners.
-
-## ⚠️ Risks
-
-- Homebrew is **at your own risk**. Keep your Switch **off Nintendo's online services** to avoid bans.
-- Experimental software.
-
-## ❓ FAQ
-
-**Can I play at full speed now?** Not yet: ~41–44% in races.
-**Is this an emulator?** Partly. The game's code is translated ahead of time, but the console's hardware runs on a Dolphin-based core.
-**Which regions work?** **[USA / PAL]**
-
-## 🐞 Reporting issues
-
-Please include: version/round, scene, measured speed, dock or handheld, and logs if available.
-
-## 🙏 Credits
-
-- **Dolphin Emulator**: the hardware core this project builds on
-- **devkitPro / libnx**: Switch homebrew toolchain
-- **zig / LLVM clang**: compiler
-
-## 🤖 AI usage for the development
-
-Parts of this project were developed with AI assistance (Anthropic's Claude) and validated with tests and measurements on the console.
+use Sphaira and create a Forwarder to open it from the Main menu.
 
 ## 📄 License
 
