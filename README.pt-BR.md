@@ -93,42 +93,34 @@ Linha de base: **39,5%**.
  
 - Nintendo Switch com homebrew (por exemplo, Atmosphère) e um cartão SD
 - Espaço livre em disco: **3,54 GB**
+
 ## 🚀 Build e instalação
- 
-1. Baixe este repositório.
-2. Coloque o "riderszg" na pasta "switch".
-3. Abra-o pelo Homebrew Menu.
+
+O repositório contém os arquivos pequenos da "homebrew". Os **4 arquivos grandes** (cerca de 3,5 GB) ficam na [página de Releases](https://github.com/MegaTail/zg-switch/releases/latest), porque passam do limite de 100 MB por arquivo do GitHub.
+
+1. Baixe este repositório (**Code → Download ZIP**) e extraia.
+2. Baixe os arquivos grandes na [última release](https://github.com/MegaTail/zg-switch/releases/latest):
+   - `riderszg.nro`
+   - `Image1.cvm`, `Image2.cvm`, `Image3.cvm`
+3. Organize os arquivos nesta estrutura:
+
+```
+riderszg/
+├── riderszg.nro            ← da release
+├── game/
+│   └── files/
+│       ├── Image1.cvm      ← da release
+│       ├── Image2.cvm      ← da release
+│       └── Image3.cvm      ← da release
+└── ... (todos os outros arquivos deste repositório)
+```
+
+4. Copie a pasta `riderszg` inteira para a pasta `switch` do seu cartão SD.
+5. Abra-o pelo Homebrew Menu segurando o R.
+
 ou
- 
+
 use o Sphaira e crie um Forwarder para abrir pelo menu principal.
- 
- 
-## ⚖️ Aviso legal
- 
-- Este repositório **não contém código, assets ou dados da Sega**, nenhuma imagem do jogo, nem chaves ou firmware do Switch.
-- Projeto de fã, **sem afiliação ou endosso da Sega ou da Nintendo**. *Sonic Riders: Zero Gravity* é marca registrada de seus respectivos proprietários.
-## ⚠️ Riscos
- 
-- Homebrew é **por sua conta e risco**. Mantenha seu Switch **fora dos serviços online da Nintendo** para evitar banimentos.
-- Software experimental.
-## ❓ FAQ
- 
-**Já dá para jogar em velocidade total?** Ainda não: ~41–44% em corridas.
-**Isto é um emulador?** Em parte. O código do jogo é traduzido antecipadamente, mas o hardware do console roda em um núcleo baseado no Dolphin.
-**Quais regiões funcionam?** **[EUA / PAL]**
- 
-## 🐞 Reportando problemas
- 
-Inclua: versão/rodada, cena, velocidade medida, dock ou portátil e logs, se disponíveis.
- 
-## 🙏 Créditos
- 
-- **Dolphin Emulator**: o núcleo de hardware no qual este projeto se baseia
-- **devkitPro / libnx**: toolchain de homebrew para Switch
-- **zig / LLVM clang**: compilador
-## 🤖 Uso de IA no desenvolvimento
- 
-Partes deste projeto foram desenvolvidas com assistência de IA (Claude, da Anthropic) e validadas com testes e medições no console.
  
 ## 📄 Licença
  
