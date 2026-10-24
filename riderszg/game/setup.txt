@@ -1,0 +1,10 @@
+# setup.txt : scanned by wit+wwt while composing a disc.
+# remove the '!' before names to activate parameters.
+
+disc-type = Wii
+image-type = ISO
+
+!part-id = RS9E8P
+!part-name = SONIC RIDERS ZERO GRAVITY
+!part-offset = 0xf800000
+

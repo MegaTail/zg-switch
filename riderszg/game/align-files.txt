@@ -1,0 +1,2 @@
+ 0x8000 = files/*.bnr
+   0x20 = files/*.cvm
