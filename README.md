@@ -1,2 +1,142 @@
-# zg-switch
-En-US: Experimental Sonic Riders: Zero Gravity (Wii) on Switch homebrew. Native ARM translation, beta (~41% Wii speed). | Pt-BR: Sonic Riders ZG (Wii) experimental no Switch. Tradução nativa ARM, beta (~41% da velocidade).
+<div align="center">
+
+# 🦔💨 zg-switch
+
+**Sonic Riders: Zero Gravity (Wii) on Nintendo Switch homebrew**
+*Experimental · ahead-of-time translation of the game's code to ARM64 · Dolphin-based hardware core*
+
+![Status](https://img.shields.io/badge/status-beta-orange)
+![Platform](https://img.shields.io/badge/platform-Nintendo%20Switch-e60012)
+![Speed](https://img.shields.io/badge/speed-~41%25%20of%20Wii-yellow)
+![License](https://img.shields.io/badge/license-GPL--3.0-blue)
+
+**English** · [Português (BR)](README.pt-BR.md)
+
+</div>
+
+---
+
+> [!WARNING]
+> **Beta.** Speed is currently **~41–44% of the original Wii speed in races (~25 FPS)** and **~39–41% in cutscenes**. It is **not yet playable at full speed**. Current goal: **stable 30 FPS (50%)**, then closer to 60 FPS.
+
+## 📌 What is this?
+
+An experimental project that runs **Sonic Riders: Zero Gravity (Wii)** on a **homebrew Nintendo Switch**.
+
+The game's PowerPC code is **statically translated ahead of time** into native ARM64 (C parts compiled with clang) and linked into a homebrew `.nro`. Wii hardware (GPU/FIFO, DSP audio, timing) is still handled by an **adapted Dolphin-based core**. So this is a **hybrid**: native game code on top of an emulated console.
+
+
+## ✨ Highlights
+
+- 🎯 **Ahead-of-time translation** of the game's code to native ARM64
+- 🐬 **Dolphin-based core** for the Wii's hardware
+- ⚙️ **Runtime options** you can toggle and measure (see below)
+- 📊 **Honest measurements** with the variation reported
+
+## 📈 Performance
+
+```
+Wii speed (100% = 60 FPS)
+Now    ████████████████░░░░░░░░░░░░░░░░░░░░░░░░  ~41%   (~25 FPS)
+Goal   ████████████████████░░░░░░░░░░░░░░░░░░░░   50%   (30 FPS)  ← next
+Full   ████████████████████████████████████████  100%   (60 FPS)
+```
+
+| Round | Race (recorded input replay) | Cutscene |
+|---|---:|---:|
+| 28 | 35% | 40% |
+| 29 | 41–44% | 39–41% |
+
+**Progress on the same automatic race start:** R24 ~15% → R25 ~24% → R27 ~21% → **R29 ~40%**
+
+> [!NOTE]
+> Results **vary between runs**: we have measured anywhere from 32% to 44% on the same build. Compare numbers only within the same scene and conditions (dock/handheld, charger, temperature).
+
+### Where the time goes (cutscene, round 29)
+
+| Category | Share |
+|---|---:|
+| Translated game code | 46.5% |
+| Dolphin-based core | 45.4% |
+| Slow memory path / module support | 6.9% |
+| Floating point | 0.7% |
+| Hardware (FIFO/MMIO) | 0.3% |
+
+## 🎛️ Runtime options (measured on a race scene)
+
+Baseline: **39.5%**.
+
+| Option | Tested value | Result |
+|---|---|---|
+| `RIDERSZG_DIRECT_CALLS` | `0` | **28%** (−11 pts: matters a lot) |
+| | `16` / `96` | 39% / 39% (same) |
+| `RIDERSZG_SYNC_IDLE` | `1` | 33.5% (−6 pts) |
+| `RIDERSZG_CACHE_DATA` | `0` | 35.5% (−4 pts) |
+| `RIDERSZG_FAST_FP` | `0` | 37% (−2.5 pts) |
+| `RIDERSZG_AUTO_IDLE` | `0` | 39% (same) |
+| `RIDERSZG_PIN_THREADS` | `0` | 39.5% (same) |
+| Build parameter `K` | 4 / 5 / 6 / 7 | **41.5%** / 39.5% / 39.5% / 38.5% |
+| Compiler flags | `-Os` / `-fno-slp-vectorize` / `-O3` | 38% / 38.5% / 38.5% |
+
+`K=4` is the current default (+2 pts, close to run-to-run noise). The easy options are exhausted; further gains need new optimizations.
+
+
+## 🗺️ Roadmap of Development.
+
+- [x] Round 29: current version
+- [ ] **Round 30** (in validation):
+  - [ ] Game functions without call entry/exit overhead (`preserve_none`)
+  - [ ] Leaner paired-single (`psq`) and MEM2 access
+  - [ ] Cache flushing only where code exists
+- [ ] Direct MEM2 access (cutscenes: ~7M slow accesses per second measured)
+- [ ] Trim overhead in the core's dispatch loop
+- [ ] **Stable 30 FPS** (≥50% average, ≥45% floor over 5 s windows)
+- [ ] Toward 60 FPS
+
+## 🔧 Requirements
+
+- Nintendo Switch with homebrew (e.g., Atmosphère) and an SD card
+- Free disk space: **3,54GB**
+
+## 🚀 Build and install
+
+1. Download this repository.
+2. Place the "riderszg" in the "switch" folder.
+3. Launch it from the Homebrew Menu.
+or
+use Sphaira and create a Forwarder to Open in the Main menu.
+
+
+## ⚖️ Legal
+
+- This repository contains **no code, assets, or data from Sega**, no game image, and no Switch keys or firmware.
+- Fan project, **not affiliated with or endorsed by Sega or Nintendo**. *Sonic Riders: Zero Gravity* is a trademark of its owners.
+
+## ⚠️ Risks
+
+- Homebrew is **at your own risk**. Keep your Switch **off Nintendo's online services** to avoid bans.
+- Experimental software.
+
+## ❓ FAQ
+
+**Can I play at full speed now?** Not yet: ~41–44% in races.
+**Is this an emulator?** Partly. The game's code is translated ahead of time, but the console's hardware runs on a Dolphin-based core.
+**Which regions work?** **[USA / PAL]**
+
+## 🐞 Reporting issues
+
+Please include: version/round, scene, measured speed, dock or handheld, and logs if available.
+
+## 🙏 Credits
+
+- **Dolphin Emulator**: the hardware core this project builds on
+- **devkitPro / libnx**: Switch homebrew toolchain
+- **zig / LLVM clang**: compiler
+
+## 🤖 AI usage for the development
+
+Parts of this project were developed with AI assistance (Anthropic's Claude) and validated with tests and measurements on the console.
+
+## 📄 License
+
+GPL-3.0. See [LICENSE](LICENSE). Includes code derived from the Dolphin Emulator.
