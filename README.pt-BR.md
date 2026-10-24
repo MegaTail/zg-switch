@@ -3,6 +3,8 @@
  
 **Sonic Riders: Zero Gravity (Wii) em homebrew para Nintendo Switch**
 *Experimental · tradução antecipada (ahead-of-time) do código do jogo para ARM64 · núcleo de hardware baseado no Dolphin*
+
+<img width="4080" height="1884" alt="20261024_004412" src="https://github.com/user-attachments/assets/aa0d8e9c-bf52-4027-8886-800f5a1b4564" />
  
 ![Status](https://img.shields.io/badge/status-beta-orange)
 ![Plataforma](https://img.shields.io/badge/plataforma-Nintendo%20Switch-e60012)
